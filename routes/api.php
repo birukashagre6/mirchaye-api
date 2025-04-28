@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\PoliticalPartyAuthController;
 
 Route::prefix('party')->group(function () {
