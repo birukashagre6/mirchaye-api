@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PoliticalPartyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\NEBEAuthController;
 use App\Http\Controllers\PartyApprovalController;
@@ -28,3 +29,7 @@ Route::prefix('nebe')->group(function () {
 Route::post('/party/register', [PartyApprovalController::class, 'registerRequest']);
 Route::post('/login', [PoliticalPartyAuthController::class, 'login']);
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/party/profile', [PoliticalPartyController::class, 'show']);
+    Route::put('/party/profile', [PoliticalPartyController::class, 'update']);
+});

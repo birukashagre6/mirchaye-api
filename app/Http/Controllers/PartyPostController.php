@@ -12,10 +12,7 @@ class PartyPostController extends Controller
     {
         $user = Auth::user();
 
-        // Only party admins are allowed
-        if ($user->role !== 'party') {
-            return response()->json(['message' => 'Unauthorized. Only party admins can post.'], 403);
-        }
+        
 
         $request->validate([
             'title' => 'required|string|max:255',
