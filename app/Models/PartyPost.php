@@ -10,7 +10,7 @@ class PartyPost extends Model
     use HasFactory;
 
     protected $primaryKey = 'post_id'; // if you used post_id in migration
-
+    protected $table = 'party_posts'; // if you used party_posts in migration
     protected $fillable = [
         'party_id',
         'title',
