@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PoliticalParty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+
 use Illuminate\Validation\ValidationException;
 
 class PoliticalPartyAuthController extends Controller
@@ -37,10 +39,7 @@ class PoliticalPartyAuthController extends Controller
         }
     
         // Verify the party has an ID
-        if (!$party->id) {
-            \Log::error('PoliticalParty missing ID', ['party' => $party]);
-            return response()->json(['message' => 'Internal server error'], 500);
-        }
+      
     
         // Create token with explicit guard
         $token = $party->createToken(

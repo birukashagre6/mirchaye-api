@@ -10,10 +10,14 @@ class PartyPostController extends Controller
 {
     public function store(Request $request)
     {
+        // Ensure the user is authenticated
         $user = Auth::user();
 
-        
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized. Please log in.'], 401);
+        }
 
+        // Validate input
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -22,8 +26,9 @@ class PartyPostController extends Controller
             'video_url' => 'nullable|url',
         ]);
 
+        // Create post
         $post = PartyPost::create([
-            'party_id' => $user->party_id,
+            'party_id' => $user->id, 
             'title' => $request->title,
             'content' => $request->content,
             'post_type' => $request->post_type,
