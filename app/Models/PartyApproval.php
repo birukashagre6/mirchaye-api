@@ -1,23 +1,20 @@
 <?php
 
-
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PoliticalParty extends Model
+class PartyApproval extends Model
 {
     use HasFactory;
 
     // Define the table if it doesn't follow the default convention
-    protected $table = 'political_parties'; // Optional, if your table name is not 'political_parties'
+    protected $table = 'party_approvals'; // Optional, if your table name is not 'party_approvals'
 
     // Fillable properties for mass assignment
     protected $fillable = [
         'party_name',
-        'password_hash',
         'party_acronym',
         'registration_number',
         'certificate_url',
@@ -31,15 +28,13 @@ class PoliticalParty extends Model
         'twitter_url',
         'founded_year',
         'slogan',
+        'password_hash',
         'status',
-        'rejection_reason',
-        'is_active',
-        'last_login',
     ];
 
     // Define any relationships (if needed)
-    public function partyApprovals()
+    public function politicalParty()
     {
-        return $this->hasMany(PartyApproval::class, 'party_name', 'party_name');
+        return $this->belongsTo(PoliticalParty::class, 'party_name', 'party_name');
     }
 }

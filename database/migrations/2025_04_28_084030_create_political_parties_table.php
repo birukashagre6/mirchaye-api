@@ -1,15 +1,13 @@
 <?php
 
+// database/migrations/[timestamp]_create_political_parties_table.php
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePoliticalPartiesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('political_parties', function (Blueprint $table) {
             $table->id('party_id');
@@ -28,17 +26,16 @@ return new class extends Migration
             $table->string('twitter_url', 255)->nullable();
             $table->integer('founded_year');
             $table->string('slogan', 255)->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->text('rejection_reason')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamp('last_login')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('political_parties');
     }
-};
+}
