@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\NEBEAuthController;
 use App\Http\Controllers\PartyApprovalController;
 use App\Http\Controllers\PoliticalPartyAuthController;
+use App\Http\Controllers\PartyPostController;
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/party/posts', [PartyPostController::class, 'store']);
+});
 
 
 
