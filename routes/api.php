@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\AuthControllerss;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\Auth\NEBEAuthController;
 use App\Http\Controllers\PartyApprovalController;
-use App\Http\Controllers\PoliticalPartyAuthController;
+use  App\Http\Controllers\PoliticalPartyAuthController;
 
 
 
@@ -19,5 +20,5 @@ Route::prefix('nebe')->group(function () {
     });
 });
 Route::post('/party/register', [PartyApprovalController::class, 'registerRequest']);
-Route::post('/party/login', [PoliticalPartyAuthController::class, 'login']);
+Route::post('/login', [PoliticalPartyAuthController::class, 'login']);
 
