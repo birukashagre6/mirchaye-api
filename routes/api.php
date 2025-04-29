@@ -12,9 +12,9 @@ Route::prefix('party')->group(function () {
         Route::post('/logout', [PoliticalPartyAuthController::class, 'logout']);
         Route::get('/me', [PoliticalPartyAuthController::class, 'me']);
     });
+});
 
-    Route::prefix('nebe')->group(function () {
-        // NEBE Admin Login
-        Route::post('/login', [NEBEAuthController::class, 'login']);
-    });
+Route::prefix('nebe')->group(function () {
+    // NEBE Admin Login
+    Route::post('/login', [NEBEAuthController::class, 'login']);
 });
