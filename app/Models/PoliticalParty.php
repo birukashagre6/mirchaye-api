@@ -1,23 +1,19 @@
 <?php
 
-
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class PoliticalParty extends Model
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
-    // Define the table if it doesn't follow the default convention
-    protected $table = 'political_parties'; // Optional, if your table name is not 'political_parties'
+    protected $table = 'political_parties';
 
-    // Fillable properties for mass assignment
     protected $fillable = [
         'party_name',
-        'password_hash',
         'party_acronym',
         'registration_number',
         'certificate_url',
@@ -31,15 +27,12 @@ class PoliticalParty extends Model
         'twitter_url',
         'founded_year',
         'slogan',
-        'status',
-        'rejection_reason',
+        'password_hash',
         'is_active',
-        'last_login',
+        'status'
     ];
 
-    // Define any relationships (if needed)
-    public function partyApprovals()
-    {
-        return $this->hasMany(PartyApproval::class, 'party_name', 'party_name');
-    }
+    protected $hidden = [
+        'password_hash'
+    ];
 }
