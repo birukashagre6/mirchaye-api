@@ -10,7 +10,7 @@ class CreatePoliticalPartiesTable extends Migration
     public function up()
     {
         Schema::create('political_parties', function (Blueprint $table) {
-            $table->id('party_id');
+            $table->id('id');
             $table->string('party_name', 100)->unique();
             $table->string('password_hash');
             $table->string('party_acronym', 20)->unique();
